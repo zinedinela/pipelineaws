@@ -1,9 +1,10 @@
 terraform {
   backend "s3" {
-    bucket = "tfstate-upjv-zinedine-2026" # Le nom exact de ton bucket S3
+    bucket = "tfstate-upjv-zinedine-2026"  # Le nom exact de ton bucket S3
     key    = "tp-devops/terraform.tfstate" # Le chemin/nom du fichier qui sera créé dans le bucket
     region = "eu-north-1"
- }
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
