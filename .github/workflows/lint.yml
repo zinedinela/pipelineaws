@@ -1,4 +1,4 @@
-name: terraform-ci
+name: lint-ci
 on: [push]
 jobs:
   checks:
