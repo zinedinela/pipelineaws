@@ -20,7 +20,7 @@ resource "aws_instance" "example" {
   subnet_id                   = aws_subnet.public["eu-north-1a"].id
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
   associate_public_ip_address = true
-  key_name                    = "upjvkey" 
+  key_name                    = "upjvkey"
   root_block_device {
     volume_size = 10
     volume_type = "gp3"

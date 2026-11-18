@@ -14,15 +14,15 @@ provider "aws" {
 locals {
   subnets = {
     "eu-north-1a" = {
-      public = "10.0.1.0/24"
+      public  = "10.0.1.0/24"
       private = "10.0.10.0/24"
     }
     "eu-north-1b" = {
-      public = "10.0.2.0/24"
+      public  = "10.0.2.0/24"
       private = "10.0.11.0/24"
     }
   }
-}    
+}
 # Create a VPC
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
@@ -33,16 +33,16 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public" {
-for_each = local.subnets
-availability_zone = each.key
-vpc_id = aws_vpc.main.id
-cidr_block = each.value.public
+  for_each          = local.subnets
+  availability_zone = each.key
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = each.value.public
 }
 resource "aws_subnet" "private" {
-for_each = local.subnets
-availability_zone = each.key
-vpc_id = aws_vpc.main.id
-cidr_block = each.value.private
+  for_each          = local.subnets
+  availability_zone = each.key
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = each.value.private
 }
 
 resource "aws_internet_gateway" "gateway" {
@@ -51,7 +51,7 @@ resource "aws_internet_gateway" "gateway" {
 
 resource "aws_route_table" "route_table" {
   vpc_id = aws_vpc.main.id
-  
+
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.gateway.id
