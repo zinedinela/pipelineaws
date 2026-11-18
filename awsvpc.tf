@@ -4,7 +4,7 @@ terraform {
     key    = "tp-devops/terraform.tfstate" # Le chemin/nom du fichier qui sera créé dans le bucket
     region = "eu-north-1"
   }
-
+  required_version = ">= 1.0.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
