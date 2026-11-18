@@ -1,0 +1,9 @@
+terraform {
+  backend "s3" {
+    bucket       = "tfstate-upjv-zinedine-2026"
+    key          = "ci-cd/terraform.tfstate"
+    region       = "eu-west-3"
+    encrypt      = true
+    use_lockfile = true   # lock natif S3 (Terraform ≥ 1.10), remplace DynamoDB
+  }
+}
