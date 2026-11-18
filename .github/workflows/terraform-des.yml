@@ -1,0 +1,17 @@
+name: terraform-destroy
+on:
+  workflow_dispatch:
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID_AWS }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY_AWS }}
+      AWS_DEFAULT_REGION: eu-north-1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+      - run: terraform init
+      - run: terraform destroy -auto-approve -input=false
